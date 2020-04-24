@@ -23,7 +23,7 @@ unsigned short test_get_animal_by_name()
 #define DATA_SIZE 6
 
 	unsigned short is_success = 1;
-	enum animal_type input_data[] = { CAT, DOG, COW, PIG, -4, 5 };
+	enum animal_type input_data[] = { CAT, DOG, COW, PIG, CAT + 1, CAT + 2 };
 	char *expected_values[] = { "Кіт",   "Собака", "Корова",
 				    "Свиня", "N/A",    "N/A" };
 
@@ -55,7 +55,8 @@ unsigned short test_generate_animal()
 	printf("Running test %s ... \n", __FUNCTION__);
 	unsigned short is_success = 1;
 	for (int i = 0; i < EXPERIMENTS_COUNT; i++) {
-		struct animal actual_data = generate_animal();
+		struct animal actual_data;
+		generate_animal(&actual_data);
 		if (strcmp(get_animal_type_name(actual_data.type), "N/A") ==
 		    0) {
 			printf("Test %s failed: in one of experiments method generate_animal() "
@@ -95,13 +96,13 @@ unsigned short test_generate_animal()
  */
 int main()
 {
-	srand(time(0));
+	srand((unsigned int)time(0));
 	unsigned short is_success = 1;
 	is_success &= test_get_animal_by_name();
 	is_success &= test_generate_animal();
 
 	if (is_success) {
-		printf("Congratulations! All tests failed!\n");
+		printf("Congratulations! All tests succeed!\n");
 	} else {
 		printf("Some tests failed. Check logs, fix errors and try again\n");
 	}

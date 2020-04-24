@@ -1,6 +1,6 @@
 targets = main.bin test.bin
 CC = gcc
-C_OPTS = -std=gnu11 -pedantic -g -Wall -I./src src/lib.c
+C_OPTS = -std=gnu11 -g -Wall -Wextra -Werror -Wformat-security -Wfloat-equal -Wshadow -Wconversion -Wlogical-not-parentheses -Wnull-dereference -I./src src/lib.c
 
 all: clean prep compile run
 
@@ -23,3 +23,4 @@ doxygen:
 format: #TODO
 
 tidy: # TODO
+
