@@ -37,11 +37,11 @@
  */
 int main()
 {
-	srand(time(0));
+	srand((unsigned int)time(0));
 	struct animal animals[ANIMAL_COUNT];
 
 	for (unsigned int i = 0; i < ANIMAL_COUNT; i++) {
-		animals[i] = generate_animal();
+		generate_animal(&animals[i]);
 	}
 	show_animals(animals, ANIMAL_COUNT);
 

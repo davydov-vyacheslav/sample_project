@@ -31,13 +31,11 @@ char *get_animal_type_name(enum animal_type type)
 	return result;
 }
 
-struct animal generate_animal()
+void generate_animal(struct animal *entity)
 {
-	struct animal result;
-	result.height = rand() % INT8_MAX;
-	result.weight = rand() % INT8_MAX;
-	result.type = rand() % ANIMAL_TYPE_COUNT;
-	return result;
+	entity->height = (unsigned int)rand() % INT8_MAX;
+	entity->weight = (unsigned int)rand() % INT8_MAX;
+	entity->type = (unsigned int)rand() % ANIMAL_TYPE_COUNT;
 }
 
 void show_animals(struct animal animals[], unsigned int count)

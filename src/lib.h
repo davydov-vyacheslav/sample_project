@@ -58,9 +58,9 @@ char *get_animal_type_name(enum animal_type type);
  * Створення даних про тварину.
  *
  * Функція генерує та повертає тварину з випадковими значеннями її полів
- * @return структура {@link animal} з заповненими полями
+ * @param entity структура {@link animal} для заповнення
  */
-struct animal generate_animal();
+void generate_animal(struct animal *entity);
 
 /**
  * Вивід до екрану вмісту масиву з даними про тварини.
