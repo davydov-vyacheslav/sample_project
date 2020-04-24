@@ -1,0 +1,51 @@
+## Common Project info
+PROJECT_NAME = "Тестовий проект"
+PROJECT_BRIEF = "Демонстрація документування коду засобами `doxygen`"
+PROJECT_NUMBER = 0.1
+
+## output options
+OUTPUT_DIRECTORY = ./dist
+OUTPUT_LANGUAGE = Ukrainian
+DOXYFILE_ENCODING = UTF-8
+
+## input options
+INPUT_ENCODING = UTF-8
+RECURSIVE = YES
+FILE_PATTERNS = *.c *.h *.md
+###########
+#USE_MDFILE_AS_MAINPAGE = README.md
+###########
+
+
+
+## processing options
+EXTRACT_ALL = YES
+EXTRACT_PRIVATE = YES
+EXTRACT_STATIC = YES
+JAVADOC_AUTOBRIEF = YES
+OPTIMIZE_OUTPUT_FOR_C = YES
+
+## Draw calls graph + object relations (for cpp)
+HAVE_DOT = YES
+DOT_PATH = /usr/local/bin/dot
+UML_LOOK = YES
+TEMPLATE_RELATIONS = YES
+CALL_GRAPH = YES
+
+## Customized generate options
+GENERATE_HTML = YES
+GENERATE_LATEX = YES
+# COMPACT_LATEX = YES
+
+## Default generate options
+GENERATE_DOCSET = NO
+GENERATE_HTMLHELP = NO
+GENERATE_CHI = NO
+GENERATE_QHP = NO
+GENERATE_ECLIPSEHELP = NO
+GENERATE_RTF = NO
+GENERATE_MAN = NO
+GENERATE_XML = NO
+GENERATE_DOCBOOK = NO
+GENERATE_AUTOGEN_DEF = NO
+GENERATE_PERLMOD = NO
