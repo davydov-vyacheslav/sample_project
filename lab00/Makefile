@@ -1,8 +1,6 @@
-targets = main.bin test.bin
-CC = gcc
-C_OPTS = -std=gnu11 -g -Wall -Wextra -Werror -Wformat-security -Wfloat-equal -Wshadow -Wconversion -Wlogical-not-parentheses -Wnull-dereference -I./src src/lib.c
-
-all: clean prep compile run
+CC = clang
+LAB_OPTS = -I./src src/lib.c
+C_OPTS = -std=gnu11 -g -Wall -Wextra -Werror -Wformat-security -Wfloat-equal -Wshadow -Wconversion -Wlogical-not-parentheses -Wnull-dereference -Wno-unused-variable $(LAB_OPTS)
 
 clean:
 	rm -rf dist
