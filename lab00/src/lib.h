@@ -46,7 +46,7 @@ struct animal {
  * @param type значення перерахувааня типу тварини
  * @return текстове репрезентування типу
  */
-char *get_animal_type_name(enum animal_type type);
+const char *get_animal_type_name(enum animal_type type);
 
 /**
  * Створення даних про тварину.

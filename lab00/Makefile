@@ -18,7 +18,8 @@ run: clean prep compile
 	./dist/main.bin
 doxygen:
 	doxygen Doxyfile
-format: #TODO
+check:
+	clang-format --verbose -dry-run --Werror src/* test/*
+	cppcheck --addon=cert .
 
-tidy: # TODO
-
+# TODO: clang-tidy; scan-build

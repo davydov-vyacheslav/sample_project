@@ -9,9 +9,9 @@
 
 #include "lib.h"
 
-char *get_animal_type_name(enum animal_type type)
+const char *get_animal_type_name(enum animal_type type)
 {
-	char *result;
+	const char *result;
 	switch (type) {
 	case CAT:
 		result = "Кіт";
@@ -33,9 +33,9 @@ char *get_animal_type_name(enum animal_type type)
 
 void generate_animal(struct animal *entity)
 {
-	entity->height = (unsigned int)rand() % INT8_MAX;
-	entity->weight = (unsigned int)rand() % INT8_MAX;
-	entity->type = (unsigned int)rand() % ANIMAL_TYPE_COUNT;
+	entity->height = (unsigned int)random() % INT8_MAX;
+	entity->weight = (unsigned int)random() % INT8_MAX;
+	entity->type = (unsigned int)random() % ANIMAL_TYPE_COUNT;
 }
 
 void show_animals(struct animal animals[], unsigned int count)
