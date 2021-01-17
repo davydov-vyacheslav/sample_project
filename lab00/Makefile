@@ -20,6 +20,6 @@ doxygen:
 	doxygen Doxyfile
 check:
 	clang-format --verbose -dry-run --Werror src/* test/*
-	cppcheck --addon=cert .
+	cppcheck --enable=all --inconclusive --addon=cert -v --suppress=unreadVariable:*/main.c --suppress=knownConditionTrueFalse:/*main.c .
 
 # TODO: clang-tidy; scan-build
