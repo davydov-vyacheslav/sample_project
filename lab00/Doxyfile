@@ -12,8 +12,7 @@ DOXYFILE_ENCODING = UTF-8
 INPUT_ENCODING = UTF-8
 RECURSIVE = YES
 FILE_PATTERNS = *.c *.h *.md
-EXCLUDE_PATTERNS = 	*/dist/* \
-			*/doc/*
+EXCLUDE_PATTERNS = *dist/* */test/*.c
 ###########
 #USE_MDFILE_AS_MAINPAGE = README.md
 ###########
@@ -21,12 +20,14 @@ EXCLUDE_PATTERNS = 	*/dist/* \
 
 
 ## processing options
-EXTRACT_ALL = YES
+EXTRACT_ALL = NO
 EXTRACT_PRIVATE = YES
 EXTRACT_STATIC = YES
 JAVADOC_AUTOBRIEF = YES
 OPTIMIZE_OUTPUT_FOR_C = YES
-WARN_AS_ERROR = YES
+WARN_NO_PARAMDOC = YES
+STRICT_PROTO_MATCHING = YES
+
 
 ## Draw calls graph + object relations (for cpp)
 HAVE_DOT = YES
@@ -37,10 +38,9 @@ CALL_GRAPH = YES
 
 ## Customized generate options
 GENERATE_HTML = YES
-GENERATE_LATEX = YES
-# COMPACT_LATEX = YES
 
 ## Default generate options
+GENERATE_LATEX = NO
 GENERATE_DOCSET = NO
 GENERATE_HTMLHELP = NO
 GENERATE_CHI = NO
