@@ -31,7 +31,7 @@ STRICT_PROTO_MATCHING = YES
 
 ## Draw calls graph + object relations (for cpp)
 HAVE_DOT = YES
-DOT_PATH = /usr/local/bin/dot
+DOT_PATH = /usr/bin/dot
 UML_LOOK = YES
 TEMPLATE_RELATIONS = YES
 CALL_GRAPH = YES
