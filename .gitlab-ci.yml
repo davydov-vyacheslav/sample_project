@@ -1,1 +1,1 @@
-include: https://gitlab.com/davs/cicd-pro-resources/-/raw/master/pro.gitlab-ci.yml
+include: https://gitlab.com/davs/cicd-pro-checker/-/raw/master/subjects/pro1/.gitlab-ci.yml
