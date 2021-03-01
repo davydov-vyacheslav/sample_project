@@ -42,8 +42,6 @@ void show_animals(struct animal animals[], unsigned int count)
 {
 	for (unsigned int i = 0; i < count; i++) {
 		printf("Інформація про тварину №%02u: ", i + 1);
-		printf("%s: зріст = %u см, маса = %u гр. \n",
-		       get_animal_type_name(animals[i].type), animals[i].height,
-		       animals[i].weight);
+		printf("%s: зріст = %u см, маса = %u гр. \n", get_animal_type_name(animals[i].type), animals[i].height, animals[i].weight);
 	}
 }
