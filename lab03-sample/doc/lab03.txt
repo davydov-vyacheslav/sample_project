@@ -27,6 +27,7 @@
 
 	.
 	└── lab03
+	    ├── README.txt
 	    ├── Makefile
 	    └── src
 	        └── main.c
