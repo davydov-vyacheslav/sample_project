@@ -4,11 +4,12 @@
  *
  * @author Davydov V.
  * @date 14-apr-2020
- * @version 1.3
+ * @version 1.4
  */
 
 #include "lib.h"
 #include <string.h>
+#include <check.h>
 
 /**
  * Верифікація роботи функції {@link get_animal_type_name}
@@ -17,25 +18,19 @@
  * @return стан проходження тестів: 1 - тести пройшли успішно, 0 - частина
  * тестів не пройшла
  */
-unsigned short test_get_animal_by_name()
+START_TEST(test_get_animal_by_name)
 {
-	printf("Running test %s ... \n", __FUNCTION__);
 #define DATA_SIZE 6
 
-	unsigned short is_success = 1;
 	enum animal_type input_data[] = { CAT, DOG, COW, PIG, ANIMAL_TYPE_COUNT, ANIMAL_TYPE_COUNT + 1 };
 	char *expected_values[] = { "Кіт", "Собака", "Корова", "Свиня", "N/A", "N/A" };
 
 	for (int i = 0; i < DATA_SIZE; i++) {
 		const char *actual_value = get_animal_type_name(input_data[i]);
-		if (strcmp(expected_values[i], actual_value) != 0) {
-			printf("Test %s failed: expected: '%s', actual: '%s'\n", __FUNCTION__, expected_values[i], actual_value);
-			is_success = 0;
-			break;
-		}
+		ck_assert_str_eq(expected_values[i], actual_value);
 	}
-	return is_success;
 }
+END_TEST
 
 /**
  * Верифікація роботи функції {@link generate_animal}.
@@ -47,35 +42,18 @@ unsigned short test_get_animal_by_name()
  * @return стан проходження тестів: 1 - тести пройшли успішно, 0 - частина
  * тестів не пройшла
  */
-unsigned short test_generate_animal()
+START_TEST(test_generate_animal)
 {
 #define EXPERIMENTS_COUNT 10
-	printf("Running test %s ... \n", __FUNCTION__);
-	unsigned short is_success = 1;
 	for (int i = 0; i < EXPERIMENTS_COUNT; i++) {
 		struct animal actual_data;
 		generate_animal(&actual_data);
-		if (strcmp(get_animal_type_name(actual_data.type), "N/A") == 0) {
-			printf("Test %s failed: in one of experiments method generate_animal() "
-			       "returned bad animal type\n",
-			       __FUNCTION__);
-			is_success = 0;
-			break;
-		}
-		if (actual_data.weight > INT8_MAX) {
-			printf("Test %s failed: animal's weight '%d' exceed maximum allowed: '%d'\n", __FUNCTION__, actual_data.weight, INT8_MAX);
-			is_success = 0;
-			break;
-		}
-		if (actual_data.height > INT8_MAX) {
-			printf("Test %s failed: animal's height '%d' exceed maximum allowed: '%d'\n", __FUNCTION__, actual_data.height, INT8_MAX);
-			is_success = 0;
-			break;
-		}
+		ck_assert_str_ne(get_animal_type_name(actual_data.type), "N/A");
+		ck_assert_int_lt(actual_data.weight, INT8_MAX);
+		ck_assert_int_lt(actual_data.height, INT8_MAX);
 	}
-
-	return is_success;
 }
+END_TEST
 
 /**
  * Точка входу модуля тестування.
@@ -89,17 +67,19 @@ unsigned short test_generate_animal()
  * @return стан проходження тестів: 1 - тести пройшли успішно, 0 - частина
  * тестів не пройшла
  */
-int main()
+int main(void)
 {
-	srand((unsigned int)time(0));
-	unsigned short is_success = 1;
-	is_success &= test_get_animal_by_name();
-	is_success &= test_generate_animal();
+	Suite *s = suite_create("Programing");
+	TCase *tc_core = tcase_create("Lab00");
 
-	if (is_success) {
-		printf("Congratulations! All tests succeed!\n");
-	} else {
-		printf("Some tests failed. Check logs, fix errors and try again\n");
-	}
-	return !is_success;
+	tcase_add_test(tc_core, test_get_animal_by_name);
+	tcase_add_test(tc_core, test_generate_animal);
+	suite_add_tcase(s, tc_core);
+
+	SRunner *sr = srunner_create(s);
+	srunner_run_all(sr, CK_VERBOSE);
+	int number_failed = srunner_ntests_failed(sr);
+	srunner_free(sr);
+
+	return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
