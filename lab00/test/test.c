@@ -8,7 +8,6 @@
  */
 
 #include "lib.h"
-#include <string.h>
 #include <check.h>
 
 /**
