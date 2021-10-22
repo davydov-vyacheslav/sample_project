@@ -12,7 +12,7 @@ compile: main.bin test.bin
 main.bin: src/main.c
 	$(CC) $(C_OPTS) $< -o ./dist/$@
 test.bin: test/test.c
-	$(CC) $(C_OPTS) $< $(ARCH) -fprofile-instr-generate -fcoverage-mapping -o ./dist/$@ -lcheck
+	$(CC) $(C_OPTS) $< $(ARCH) -fprofile-instr-generate -fcoverage-mapping -o ./dist/$@ -lcheck -lm -lrt -lpthread -lsubunit
 test: clean prep compile
 	LLVM_PROFILE_FILE="dist/test.profraw" ./dist/test.bin
 	$(CLANG_PREFIX)llvm-profdata merge -sparse dist/test.profraw -o dist/test.profdata
