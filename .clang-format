@@ -13,6 +13,7 @@
 # DVV changes:
 # * ColumnLimit updated to 150
 # * removed ForEachMacros
+# * source: https://github.com/torvalds/linux/blob/master/.clang-format
 #######
 
 ---
