@@ -55,7 +55,7 @@ string Animal::getInfo() const
 Animal* Animal::generateAnimal()
 {
   return new Animal(static_cast<AnimalType>(random() % ANIMAL_TYPE_COUNT), static_cast<size_t>(random() % INT8_MAX),
-           static_cast<size_t>(random() % INT8_MAX));
+                    static_cast<size_t>(random() % INT8_MAX));
 }
 AnimalType Animal::getType() const
 {

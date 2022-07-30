@@ -23,8 +23,6 @@ test: clean prep compile
 	$(CLANG_PREFIX)llvm-cov show dist/test.bin -instr-profile=dist/test.profdata src/*.cpp --format html > dist/coverage.html
 run: clean prep compile
 	./dist/main.bin
-doxygen:
-	doxygen Doxyfile
 check:
 	clang-format --verbose -dry-run --Werror src/* test/*
 	$(CLANG_PREFIX)clang-tidy src/*.cpp  -checks=-readability-uppercase-literal-suffix,-readability-magic-numbers,-clang-analyzer-deadcode.DeadStores,-clang-analyzer-security.insecureAPI.rand
