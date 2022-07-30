@@ -1,10 +1,10 @@
 /**
- * @file test.c
+ * @file test.cpp
  * @brief Файл з тестами на реалізації функцій оперування тваринами
  *
  * @author Davydov V.
- * @date 14-apr-2020
- * @version 1.4
+ * @date 30-jul-2022
+ * @version 1.0
  */
 
 #include "lib.h"

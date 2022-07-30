@@ -12,7 +12,7 @@
  */
 
 /**
- * @file main.c
+ * @file main.cpp
  * @brief Файл з демонстрацією роботи класу {@link Animal} та методів оперування ним.
  *
  * @author Davydov V.
