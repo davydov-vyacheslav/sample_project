@@ -1,5 +1,5 @@
-MAC_OPTS=-isystem /opt/homebrew/include -I/opt/homebrew/include -L/opt/homebrew/lib
-ARCH = -arch arm64
+#MAC_OPTS=-isystem /opt/homebrew/include -I/opt/homebrew/include -L/opt/homebrew/lib
+#ARCH = -arch arm64
 
 CC = $(CLANG_PREFIX)clang++
 LAB_OPTS = -I./src src/lib.cpp
