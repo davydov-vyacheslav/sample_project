@@ -41,5 +41,6 @@ TEST(ProgramingLab00, test_generate_animal)
     ASSERT_NE(getAnimalTypeName(actual_data->getType()), "N/A");
     ASSERT_LT(actual_data->getWeight(), INT8_MAX);
     ASSERT_LT(actual_data->getHeight(), INT8_MAX);
+    delete actual_data;
   }
 }

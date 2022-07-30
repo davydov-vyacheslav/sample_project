@@ -58,5 +58,8 @@ int main()
     cout << "Інформація про тварину: " << animal->getInfo() << endl;
   }
 
+  for (const Animal* animal : animals) {
+    delete animal;
+  }
   return 0;
 }

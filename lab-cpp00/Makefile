@@ -1,10 +1,9 @@
-#MAC_OPTS=-isystem /opt/homebrew/include -I/opt/homebrew/include -L/opt/homebrew/lib
-#ARCH = -arch arm64
+MAC_OPTS=-isystem /opt/homebrew/include -I/opt/homebrew/include -L/opt/homebrew/lib
+ARCH = -arch arm64
 
 CC = $(CLANG_PREFIX)clang++
 LAB_OPTS = -I./src src/lib.cpp
-C_OPTS = $(MAC_OPTS) -std=c++11 -g -Wall -Wextra -Werror -Wformat-security -Wfloat-equal -Wshadow -Wconversion -Wlogical-not-parentheses -Wnull-dereference -Wno-unused-variable -Werror=vla $(LAB_OPTS)
-V_FLAGS=--tool=memcheck --leak-check=full --show-reachable=yes --undef-value-errors=yes --track-origins=no --child-silent-after-fork=no --trace-children=no --error-exitcode=1
+C_OPTS = $(MAC_OPTS) -fsanitize=address -std=c++11 -g -Wall -Wextra -Werror -Wformat-security -Wfloat-equal -Wshadow -Wconversion -Wlogical-not-parentheses -Wnull-dereference -Wno-unused-variable -Werror=vla $(LAB_OPTS)
 
 clean:
 	rm -rf dist
@@ -29,5 +28,5 @@ check:
 	cppcheck --enable=all --inconclusive --addon=cert --error-exitcode=1  -v --check-config --suppress=*:*/test.cpp  .
 	rm -rf src/*.dump test/*.dump
 leak-check: clean prep compile
-	valgrind $(V_FLAGS) --log-file=dist/valgrind.log --xml-file=dist/valgrind.xml --xml=yes dist/main.bin
-	valgrind $(V_FLAGS) --log-file=dist/valgrind.log --xml-file=dist/valgrind.xml --xml=yes dist/test.bin
+	ASAN_OPTIONS=detect_leaks=1 LSAN_OPTIONS=suppressions=leaks_suppr.txt dist/main.bin
+	ASAN_OPTIONS=detect_leaks=1 LSAN_OPTIONS=suppressions=leaks_suppr.txt LLVM_PROFILE_FILE="dist/test.profraw" dist/test.bin
